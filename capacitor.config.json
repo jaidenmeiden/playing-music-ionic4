@@ -1,0 +1,7 @@
+{
+  "appId": "com.jaidenmeiden.music",
+  "appName": "Plazi music",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}
