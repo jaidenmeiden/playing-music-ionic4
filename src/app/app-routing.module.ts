@@ -8,6 +8,7 @@ const routes: Routes = [
     canActivate: [IntroGuard]
   },
   { path: 'intro', loadChildren: './pages/intro/intro.module#IntroPageModule' },
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
 ];
 
 @NgModule({
