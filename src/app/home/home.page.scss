@@ -1,5 +1,5 @@
 ion-content {
-  --background: #10dc60;
+  --background: var(--ion-color-success);
   font-family: "Times New Roman", Times, serif;
 }
 ion-slides {
@@ -23,7 +23,7 @@ ion-slide > p {
   padding: 1em 1em 1em 1em;
 }
 ion-slide > ion-icon {
-  color: #10dc60;
+  color: var(--ion-color-success);
   font-size: 48px;
 }
 ion-slide > ion-icon[name="close"] {
