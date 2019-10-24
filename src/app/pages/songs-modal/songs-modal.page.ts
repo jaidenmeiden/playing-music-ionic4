@@ -13,12 +13,10 @@ export class SongsModalPage {
   constructor(
       private navParams: NavParams,
       private modalController: ModalController
-  ) {
-  }
+  ) {}
 
   ionViewDidEnter() {
     this.songs = this.navParams.data.songs;
-    console.log(this.navParams);
     this.artist = this.navParams.data.artist;
   }
 
