@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -14,7 +14,7 @@ import {Storage} from "@ionic/storage";
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
   loginForm: FormGroup;
   validation_messages = {
@@ -48,9 +48,6 @@ export class LoginPage implements OnInit {
           Validators.compose([Validators.required, Validators.minLength(5)])
       )
     });
-  }
-
-  ngOnInit() {
   }
 
   loginUser(credentials) {
