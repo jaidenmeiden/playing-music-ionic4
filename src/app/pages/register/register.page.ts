@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators
-} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {NavController} from "@ionic/angular";
-import {AuthenticateService} from "../../services/authenticate.service";
 import {Storage} from "@ionic/storage";
+import {AuthenticateService} from "../../services/authenticate.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class RegisterPage implements OnInit {
 
-  loginForm: FormGroup;
+  registerForm: FormGroup;
   validation_messages = {
+    nombre: [
+      { type: "required", message: " El nombre es requerido" }
+    ],
+    apellido: [
+      { type: "required", message: " El apellido es requerido" }
+    ],
     email: [
       { type: "required", message: " El email es requerido" },
       { type: "pattern", message: "El email debe ser de la forma usuario@dominio.com" }
@@ -28,14 +29,13 @@ export class LoginPage implements OnInit {
     ]
   };
   errorMessage: string = "";
-
   constructor(
       private formBuilder: FormBuilder,
       private authService: AuthenticateService,
       private navCtrl: NavController,
       private storage: Storage
   ) {
-    this.loginForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
       email: new FormControl(
           "",
           Validators.compose([
@@ -53,20 +53,4 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  loginUser(credentials) {
-      this.authService
-            .loginUser(credentials)
-            .then(res => {
-                this.errorMessage = "";
-                this.storage.set("isUserLoggedIn", true);
-                this.navCtrl.navigateForward("/home");
-            })
-            .catch(err => {
-                this.errorMessage = err;
-            });
-  }
-
-  goToRegister() {
-      this.navCtrl.navigateForward("/register");
-  }
 }
