@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'menu', loadChildren: './pages/menu/menu.module#MenuPageModule',
     canActivate: [LoginGuard, IntroGuard]
-  }
+  },
+  { path: 'songs-modal', loadChildren: './pages/songs-modal/songs-modal.module#SongsModalPageModule' }
 ];
 
 @NgModule({
