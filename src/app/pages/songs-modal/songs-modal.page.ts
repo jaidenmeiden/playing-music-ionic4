@@ -7,8 +7,9 @@ import {ModalController, NavParams} from "@ionic/angular";
   styleUrls: ['./songs-modal.page.scss'],
 })
 export class SongsModalPage {
+  option: number;
   songs: any[];
-  artist: string;
+  name: string;
 
   constructor(
       private navParams: NavParams,
@@ -16,8 +17,9 @@ export class SongsModalPage {
   ) {}
 
   ionViewDidEnter() {
+    this.option = this.navParams.data.option;
     this.songs = this.navParams.data.songs;
-    this.artist = this.navParams.data.artist;
+    this.name = this.navParams.data.name;
   }
 
   async selectSong(song) {

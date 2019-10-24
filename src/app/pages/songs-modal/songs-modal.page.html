@@ -1,8 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{ artist + "- Top tracks" }}</ion-title>
+    <ion-title *ngIf="option === 1">{{ name + "- Top tracks" }}</ion-title>
+    <ion-title *ngIf="option === 2">{{ "Album " + name }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="selectSong()">Cerrar</ion-button>
+      <ion-button (click)="selectSong(null)">Cerrar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +16,8 @@
       </ion-avatar>
       <ion-label>
         <h2>{{ song.name }}</h2>
-        <p>{{ song.popularity }}</p>
+        <p *ngIf="option === 1">{{ song.popularity }}</p>
+        <p *ngIf="option === 2"><ion-label color="primary" *ngFor="let artist of song.artists">{{ artist.name }}</ion-label></p>
       </ion-label>
     </ion-item>
   </ion-list>

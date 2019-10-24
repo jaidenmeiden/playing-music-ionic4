@@ -9,7 +9,7 @@
     <h1>Artistas</h1>
     <ion-slides [options]="slideOps" *ngIf="artists.length">
         <ion-slide *ngFor="let artist of artists">
-            <ion-avatar (click)="showSongs(artist)">
+            <ion-avatar (click)="showSongs(artist, 1)">
                 <img [src]="artist.images[0].url" />
                 <span>{{ artist.name }}</span>
             </ion-avatar>
@@ -18,7 +18,7 @@
     <h1>Albums</h1>
     <ion-slides [options]="slideOps" *ngIf="albums.length">
         <ion-slide *ngFor="let album of albums">
-            <ion-avatar class="square-avatar">
+            <ion-avatar class="square-avatar" (click)="showSongs(album, 2)">
                 <img [src]="album.images[0].url" />
                 <span>{{ album.name }}</span>
             </ion-avatar>
@@ -27,7 +27,7 @@
     <h1>Canciones</h1>
     <ion-slides [options]="slideOps" *ngIf="songs.length">
         <ion-slide *ngFor="let song of songs">
-            <ion-avatar class="square-avatar">
+            <ion-avatar class="square-avatar" (click)="showSongs(song, 3)">
                 <img [src]="song.images[0].url" />
                 <span>{{ song.name }}</span>
             </ion-avatar>
@@ -51,10 +51,16 @@
             <ion-col size="1">
                 <ion-icon name="heart"></ion-icon>
             </ion-col>
-            <ion-col size="10">
+            <ion-col size="10" *ngIf="!song">
+                <ion-text>Aún no has seleccionado canción</ion-text>
+            </ion-col>
+            <ion-col size="10" *ngIf="song">
                 <ion-text>{{song.name || "Aún no has seleccionado canción"}}</ion-text>
             </ion-col>
-            <ion-col size="1">
+            <ion-col size="1" *ngIf="!song">
+                <ion-icon name="hourglass"></ion-icon>
+            </ion-col>
+            <ion-col size="1" *ngIf="song">
                 <ion-icon
                         name="play"
                         (click)="play()"

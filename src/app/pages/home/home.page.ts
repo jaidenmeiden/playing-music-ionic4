@@ -19,7 +19,7 @@ export class HomePage {
   songs: any[] = [];
   albums: any[] = [];
   artists: any[] = [];
-  song = {};
+  song = null;
   currentSong = {};
   newTime;
   constructor(
@@ -34,28 +34,49 @@ export class HomePage {
       this.songs = newReleases.albums.items.filter(
           e => e.album_type == "single"
       );
+      console.log(this.songs);
       this.albums = newReleases.albums.items.filter(
           e => e.album_type == "album"
       );
+      //console.log(this.albums);
     });
   }
 
-  async showSongs(artist) {
-    const songs = await this.musicService.getArtistTopTracks(artist.id);
-    //console.log(songs);
-    const modal = await this.modalController.create({
-      component: SongsModalPage,
-      componentProps: {
-        songs: songs.tracks,
-        artist: artist.name
+  async showSongs(object, option) {
+    if(option === 1) {
+      const data = await this.musicService.getArtistTopTracks(object.id);
+      var songs = data.tracks;
+    } else {
+      if(option === 2) {
+        const data = await this.musicService.getAlbumTracks(object.id);
+        var songs = data.items;
+      } else {
+        if(option === 3) {
+          songs = [];
+          this.song = object;
+        }
       }
-    });
+    }
 
-    modal.onDidDismiss().then(dataRetuned => {
-      this.song = dataRetuned.data;
-    });
+    if(option < 3) {
+      console.log(songs);
+      const modal = await this.modalController.create({
+        component: SongsModalPage,
+        componentProps: {
+          option: option,
+          songs: songs,
+          name: object.name
+        }
+      });
 
-    return await modal.present();
+      modal.onDidDismiss().then(dataRetuned => {
+        this.song = dataRetuned.data;
+      });
+
+      return await modal.present();
+    } else {
+      return null;
+    }
   }
 
   play() {
