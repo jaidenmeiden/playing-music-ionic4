@@ -7,6 +7,13 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+  artists = [{}, {}, {}, {}, {}, {}, {}, {}];
+  slideOps = {
+    initialSlide: 2,
+    slidesPerView: 4,
+    centeredSlides: true,
+    speed: 400
+  };
   constructor() {}
 
 }
