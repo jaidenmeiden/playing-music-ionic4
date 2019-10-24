@@ -24,4 +24,8 @@ export class MenuPage {
     this.navCtrl.navigateRoot('/login');
   }
 
+  goToSettings() {
+    this.navCtrl.navigateRoot("menu/settings");
+  }
+
 }
