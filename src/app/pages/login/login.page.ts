@@ -59,7 +59,7 @@ export class LoginPage implements OnInit {
             .then(res => {
                 this.errorMessage = "";
                 this.storage.set("isUserLoggedIn", true);
-                this.navCtrl.navigateForward("/home");
+                this.navCtrl.navigateForward('/menu/home');
             })
             .catch(err => {
                 this.errorMessage = err;
@@ -67,6 +67,6 @@ export class LoginPage implements OnInit {
   }
 
   goToRegister() {
-      this.navCtrl.navigateForward("/register");
+      this.navCtrl.navigateForward('/register');
   }
 }
