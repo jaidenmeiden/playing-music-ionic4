@@ -36,6 +36,14 @@ export class RegisterPage implements OnInit {
       private storage: Storage
   ) {
     this.registerForm = this.formBuilder.group({
+      nombre: new FormControl(
+          "",
+          Validators.compose([Validators.minLength(3), Validators.required])
+      ),
+      apellido: new FormControl(
+          "",
+          Validators.compose([Validators.minLength(3), Validators.required])
+      ),
       email: new FormControl(
           "",
           Validators.compose([
@@ -51,6 +59,16 @@ export class RegisterPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  register(userData) {
+    this.authService.registerUser(userData).then(() => {
+      this.navCtrl.navigateBack("/login");
+    });
+  }
+
+  goToLogin() {
+    this.navCtrl.navigateBack("/login");
   }
 
 }

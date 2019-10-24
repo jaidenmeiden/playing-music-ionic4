@@ -1,8 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button (click)="goToLogin()">
+        Back
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <figure text-center padding>
     <img src="assets/img/logo.png" />
   </figure>
-  <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+  <form  [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
     <ion-item>
       <ion-label>Nombre</ion-label>
       <ion-input formControlName="nombre"></ion-input>
