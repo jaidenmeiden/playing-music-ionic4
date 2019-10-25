@@ -9,44 +9,44 @@ import {Storage} from "@ionic/storage";
 })
 export class IntroPage {
 
-  slidesOpts = {
+  slideOpts = {
     initialSlide: 0,
     slidesPerView: 1,
     centeredSlides: true,
     speed: 400
   };
-
-  slides = [{
-    imagenSrc: "./assets/img/logo.png",
-    imagenAlt: "Platzy Music Logo",
-    title: "Este es el título 1",
-    subTitle: "Este es el sub título 1",
-    description: "Aquí va la descripción 1",
-    icon: "play"
-  }, {
-    imagenSrc: "./assets/img/logo.png",
-    imagenAlt: "Platzy Music Logo",
-    title: "Este es el título 2",
-    subTitle: "Este es el sub título 2",
-    description: "Aquí va la descripción 2",
-    icon: "play"
-  }, {
-    imagenSrc: "./assets/img/logo.png",
-    imagenAlt: "Platzy Music Logo",
-    title: "Este es el título 3",
-    subTitle: "Este es el sub título 3",
-    description: "Aquí va la descripción 3",
-    icon: "play"
-  }];
-
-  constructor(
-      private router: Router,
-      private storage: Storage
-  ) { }
-
+  slides = [
+    {
+      imageSrc: "assets/img/logo.png",
+      imageAlt: "Platzi Music Logo",
+      title: "Escucha tu música",
+      subTitle: "EN CUALQUIER LUGAR",
+      description: `Los mejores álbumes, las mejores canciones. Escucha y comparte en
+        cualquier momento, a todas horas.`,
+      icon: "play"
+    },
+    {
+      imageSrc: "assets/img/logo.png",
+      imageAlt: "Platzi Music Logo",
+      title: "Disfruta de nuestro reproductor",
+      subTitle: "DE VIDEOS INCREÍBLES",
+      description: `Entra al modo video de nuestro reproductor y obtén acceso a clips,
+        documentales y making offs incríbles de tu artista favorito.`,
+      icon: "videocam"
+    },
+    {
+      imageSrc: "assets/img/logo.png",
+      imageAlt: "Platzi Music Logo",
+      title: "Accede al exclusivo",
+      subTitle: "MODO DEPORTE",
+      description: `Crea una playlist basada en tu actividad física. <br />
+        Ten reportes y acceso a lo que necesites, integrado ccon GPS!`,
+      icon: "bicycle"
+    }
+  ];
+  constructor(private router: Router, private storage: Storage) {}
   finish() {
-    this.storage.set('isIntroShowed', true);
-    this.router.navigateByUrl('/menu/home');
+    this.storage.set("isIntroShowed", true);
+    this.router.navigateByUrl("/login");
   }
-
 }

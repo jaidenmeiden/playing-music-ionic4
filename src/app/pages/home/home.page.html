@@ -35,13 +35,13 @@
     </ion-slides>
 </ion-content>
 <ion-footer>
-    <ion-grid>
+    <ion-grid *ngIf="currentSong">
         <ion-row>
             <ion-col class="ion-text-start">{{
-                parseTime(currentSong.currentTime) || "0:00"
+                parseTime(currentSong.currentTime) || "00:00"
                 }}</ion-col>
             <ion-col class="ion-text-end">{{
-                parseTime(currentSong.duration) || "0:00"
+                parseTime(currentSong.duration) || "00:00"
                 }}</ion-col>
         </ion-row>
     </ion-grid>
@@ -51,16 +51,16 @@
             <ion-col size="1">
                 <ion-icon name="heart"></ion-icon>
             </ion-col>
-            <ion-col size="10" *ngIf="!song">
+            <ion-col size="10" *ngIf="song.preview_url === ''">
                 <ion-text>Aún no has seleccionado canción</ion-text>
             </ion-col>
-            <ion-col size="10" *ngIf="song">
+            <ion-col size="10" *ngIf="song.preview_url !== ''">
                 <ion-text>{{song.name || "Aún no has seleccionado canción"}}</ion-text>
             </ion-col>
-            <ion-col size="1" *ngIf="!song">
+            <ion-col size="1" *ngIf="song.preview_url === ''">
                 <ion-icon name="hourglass"></ion-icon>
             </ion-col>
-            <ion-col size="1" *ngIf="song">
+            <ion-col size="1" *ngIf="song.preview_url !== ''">
                 <ion-icon
                         name="play"
                         (click)="play()"

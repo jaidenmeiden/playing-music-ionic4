@@ -26,6 +26,7 @@ export class MenuPage {
 
   goToSettings() {
     this.navCtrl.navigateRoot("menu/settings");
+    this.menu.close();
   }
 
 }

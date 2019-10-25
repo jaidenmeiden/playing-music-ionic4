@@ -19,8 +19,16 @@ export class HomePage {
   songs: any[] = [];
   albums: any[] = [];
   artists: any[] = [];
-  song = null;
-  currentSong = {};
+  song: {
+    preview_url: string;
+    playing: boolean;
+    name: string;
+  } = {
+    preview_url: "",
+    playing: false,
+    name: ""
+  };
+  currentSong: HTMLAudioElement;
   newTime;
   constructor(
       private musicService: PlatziMusicService,
@@ -34,7 +42,7 @@ export class HomePage {
       this.songs = newReleases.albums.items.filter(
           e => e.album_type == "single"
       );
-      console.log(this.songs);
+      //console.log(this.songs);
       this.albums = newReleases.albums.items.filter(
           e => e.album_type == "album"
       );
@@ -59,7 +67,7 @@ export class HomePage {
     }
 
     if(option < 3) {
-      console.log(songs);
+      //console.log(songs);
       const modal = await this.modalController.create({
         component: SongsModalPage,
         componentProps: {
@@ -70,7 +78,17 @@ export class HomePage {
       });
 
       modal.onDidDismiss().then(dataRetuned => {
-        this.song = dataRetuned.data;
+        if(dataRetuned.data !== null) {
+          this.song = dataRetuned.data;
+        } else {
+          this.song = {
+            preview_url: "",
+            playing: false,
+            name: ""
+          };
+          this.currentSong = null;
+          this.newTime = 0;
+        }
       });
 
       return await modal.present();
@@ -94,7 +112,7 @@ export class HomePage {
     this.song.playing = false;
   }
 
-  parseTime(time = "0.00") {
+  parseTime(time: number) {
     if (time) {
       const partTime = parseInt(time.toString().split(".")[0], 10);
       let minutes = Math.floor(partTime / 60).toString();
