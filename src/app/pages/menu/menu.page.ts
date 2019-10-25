@@ -29,4 +29,14 @@ export class MenuPage {
     this.menu.close();
   }
 
+  goToSports() {
+    this.navCtrl.navigateRoot("menu/sports");
+    this.menu.close();
+  }
+
+  goToHome() {
+    this.navCtrl.navigateRoot("menu/home");
+    this.menu.close();
+  }
+
 }
