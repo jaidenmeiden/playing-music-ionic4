@@ -12,13 +12,11 @@
           *ngIf="currentCenter"
           [latitude]="currentCenter.lat"
           [longitude]="currentCenter.lng"
-          [zoom]="defaultZoon"
-  >
+          [zoom]="defaultZoon">
     <agm-marker
             [latitude]="currentCenter.lat"
             [longitude]="currentCenter.lng"
-            iconUrl="./assets/img/bicycle.png"
-    >
+            iconUrl="./assets/img/bicycle.png">
     </agm-marker>
     <agm-polyline [strokeColor]="'red'" *ngIf="coordinates">
       <agm-polyline-point
